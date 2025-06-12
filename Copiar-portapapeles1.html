@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Copiando al portapapeles</title>
+</head>
+<body>
+  <script>
+    (function() {
+      function getParam(param) {
+        const url = new URL(window.location.href);
+        return decodeURIComponent(url.searchParams.get(param) || '');
+      }
+
+      const text = getParam('text');
+      
+      if (text) {
+        navigator.clipboard.writeText(text).catch(err => {
+          console.error("Error al copiar: ", err);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
