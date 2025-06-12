@@ -15,7 +15,12 @@
       const text = getParam('text');
       
       if (text) {
-        navigator.clipboard.writeText(text).catch(err => {
+        navigator.clipboard.writeText(text).then(() => {
+          // Intentar cerrar la ventana después de copiar
+          setTimeout(() => {
+            window.close();
+          }, 500); // pequeño retraso para asegurar la copia
+        }).catch(err => {
           console.error("Error al copiar: ", err);
         });
       }
